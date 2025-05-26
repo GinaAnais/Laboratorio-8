@@ -13,7 +13,7 @@ public class Test {
         arbol.insert(40);
         arbol.insert(30);  // Inserción que genera RSR
         System.out.println(arbol);
-        // Aquí limpia o crea un árbol nuevo para el siguiente caso
+        // Aquí limpia 
         arbol = new AVLTree<>();
 
         // Caso 2: RSL (rotación simple a la izquierda)

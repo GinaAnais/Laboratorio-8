@@ -1,6 +1,8 @@
 package avlTree;
 
 import java.util.Stack;
+import java.util.List;
+import java.util.ArrayList;
 
 import Exceptions.ItemDuplicated;
 import Exceptions.ItemNotFound;
@@ -29,7 +31,7 @@ public class BSTree<E extends Comparable<E>> {
 		}
 	}
 	
-	private Node root;
+	protected Node root;
 
 	public BSTree() {
 		this.root = null;
@@ -357,6 +359,30 @@ public class BSTree<E extends Comparable<E>> {
 	    return count;
 	}
 
-	
+	public String recorridoPorNiveles() {
+        int altura = calculateNodeHeight(this.root);
+        StringBuilder sb = new StringBuilder();
+        sb.append("Altura: ").append(altura).append("\n");
+
+        for (int nivel = 0; nivel < altura; nivel++) {
+            List<String> resultado = new ArrayList<>();
+            recorrerNivel(this.root, nivel, resultado);
+            sb.append("Nivel ").append(nivel).append(": ");
+            sb.append(String.join(", ", resultado));
+            sb.append("\n");
+        }
+
+        return sb.toString();
+    }
+
+	private void recorrerNivel(Node nodo, int nivel, List<String> resultado) {
+		if (nodo == null) return;
+		if (nivel == 0) {
+			resultado.add(nodo.data.toString());
+		} else {
+			recorrerNivel(nodo.left, nivel - 1, resultado);
+			recorrerNivel(nodo.right, nivel - 1, resultado);
+		}
+	}
 	
 }
